@@ -1,0 +1,18 @@
+Ubuntu Build Instructions:
+
+In Ubuntu, open a terminal (Applications → Accessories → Terminal) and copy in each of the following lines one at a time:
+
+1.  sudo apt-get install git-core build-essential libcrypto++-dev swig libqtcore4 libqt4-dev python-qt4 python-dev python-twisted
+2.  git clone git://github.com/etotheipi/BitcoinArmory.git
+3.  cd BitcoinArmory/cppForSwig
+4.  make swig
+5.  cd ..
+6.  python ArmoryQt.py
+
+If you get an error trying to run Armory, it’s probably because of a dynamic library linking issue that I haven’t figured out how to properly resolve yet.  Until then, you can preload the library by replacing Step 6 with (try both if one doesn’t work):
+
+LD_PRELOAD=/usr/lib/libcryptopp.so python ArmoryQt.py
+
+or
+
+LD_PRELOAD=/usr/lib/libcrypto++.so python ArmoryQt.py
